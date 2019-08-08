@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To start up the app
+
+In your terminal, go to the directory where the project will live, then run:
+
+```
+  $ git clone https://github.com/belcortes/auth0-quotes.git  
+  $ cd auth0-quotes  
+  $ yarn  
+```
+
+
 ## Available Scripts
 
 In the project directory, you can run:
