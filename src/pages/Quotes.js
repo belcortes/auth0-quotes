@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import QuotesList from '../components/QuotesList';
 
 class Quotes extends Component {
   state = {
-    quotes: []
+    quotes: [],
   }
 
   componentDidMount() {
@@ -17,12 +17,12 @@ class Quotes extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { search } = this.props.location
+    const { search } = this.props.location;
     if (search !== prevProps.location.search) {
       axios.get(`https://auth0-exercise-quotes-api.herokuapp.com/api/quotes?text=${search.split('=')[1]}`)
-         .then(res => {
-           this.setState({ quotes: res.data.results });
-         })
+        .then(res => {
+          this.setState({ quotes: res.data.results });
+        });
     }
   }
 
@@ -36,5 +36,9 @@ class Quotes extends Component {
     );
   }
 }
+
+Quotes.propTypes = {
+  location: PropTypes.shape().isRequired,
+};
 
 export default Quotes;

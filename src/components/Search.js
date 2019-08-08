@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
   state = {
-    search: ''
+    search: '',
   }
 
   handleInputChange = e => {
-    this.setState({search: e.target.value})
+    this.setState({ search: e.target.value });
   }
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.history.push({
+    const { history } = this.props;
+    const { search } = this.state;
+
+    history.push({
       pathname: '/',
-      search: `search=${this.state.search}`,
-    })
+      search: `search=${search}`,
+    });
   }
 
   render() {
     return (
       <div>
         <form onSubmit={this.onSubmit}>
-          <input type="text" placeholder='Search' onChange={this.handleInputChange} />
+          <input type="text" placeholder="Search" onChange={this.handleInputChange} />
         </form>
       </div>
-    )
+    );
   }
+}
+
+Search.propTypes = {
+  history: PropTypes.shape().isRequired,
 };
 
 export default withRouter(Search);
