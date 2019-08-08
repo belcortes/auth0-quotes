@@ -1,0 +1,40 @@
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+import axios from 'axios';
+
+import QuotesList from '../components/QuotesList';
+
+class Quotes extends Component {
+  state = {
+    quotes: []
+  }
+
+  componentDidMount() {
+    axios.get('https://auth0-exercise-quotes-api.herokuapp.com/api/quotes')
+      .then(res => {
+        this.setState({ quotes: res.data.results });
+      });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { search } = this.props.location
+    if (search !== prevProps.location.search) {
+      axios.get(`https://auth0-exercise-quotes-api.herokuapp.com/api/quotes?text=${search.split('=')[1]}`)
+         .then(res => {
+           this.setState({ quotes: res.data.results });
+         })
+    }
+  }
+
+
+  render() {
+    const { quotes } = this.state;
+    return (
+      <div>
+        <QuotesList quotes={quotes} />
+      </div>
+    );
+  }
+}
+
+export default Quotes;
