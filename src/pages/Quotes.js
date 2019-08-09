@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import { fetchQuotes } from '../helpers';
+
 import QuotesList from '../components/QuotesList';
 import Sorting from '../components/Sorting';
 
@@ -11,10 +13,7 @@ class Quotes extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://auth0-exercise-quotes-api.herokuapp.com/api/quotes')
-      .then(res => {
-        this.setState({ quotes: res.data.results });
-      });
+    fetchQuotes().then(quotes => this.setState({ quotes }));
   }
 
   componentDidUpdate(prevProps) {
@@ -27,12 +26,19 @@ class Quotes extends Component {
     }
   }
 
+  onFilterSelect = value => {
+    axios.get(`https://auth0-exercise-quotes-api.herokuapp.com/api/quotes?sortBy=${value}`)
+      .then(res => {
+        this.setState({ quotes: res.data.results });
+      });
+  }
+
 
   render() {
     const { quotes } = this.state;
     return (
       <div>
-        <Sorting />
+        <Sorting onFilterSelect={this.onFilterSelect} />
         <QuotesList quotes={quotes} />
       </div>
     );

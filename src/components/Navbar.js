@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 import Search from './Search';
 
-export default () => (
+const Navbar = () => (
   <nav>
     <Link to="/">Auth 0 | Quotes</Link>
     <Search />
   </nav>
 );
+
+export default Navbar;
