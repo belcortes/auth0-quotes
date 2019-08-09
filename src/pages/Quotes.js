@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
-import { fetchQuotes } from '../helpers';
+import {
+  fetchQuotes,
+  fetchSearchedQuotes,
+  fetchSortedQuotes
+} from '../api-helpers';
 
 import QuotesList from '../components/QuotesList';
 import Sorting from '../components/Sorting';
 
 class Quotes extends Component {
   state = {
-    quotes: [],
+    quotes: []
   }
 
   componentDidMount() {
@@ -18,21 +21,16 @@ class Quotes extends Component {
 
   componentDidUpdate(prevProps) {
     const { search } = this.props.location;
-    if (search !== prevProps.location.search) {
-      axios.get(`https://auth0-exercise-quotes-api.herokuapp.com/api/quotes?text=${search.split('=')[1]}`)
-        .then(res => {
-          this.setState({ quotes: res.data.results });
-        });
+    const prevSearch = prevProps.location.search;
+
+    if (search && search !== prevSearch) {
+      fetchSearchedQuotes(search.split('=')[1]).then(quotes => this.setState({ quotes }));
     }
   }
 
   onFilterSelect = value => {
-    axios.get(`https://auth0-exercise-quotes-api.herokuapp.com/api/quotes?sortBy=${value}`)
-      .then(res => {
-        this.setState({ quotes: res.data.results });
-      });
+    fetchSortedQuotes(value).then(quotes => this.setState({ quotes }));
   }
-
 
   render() {
     const { quotes } = this.state;
@@ -46,7 +44,7 @@ class Quotes extends Component {
 }
 
 Quotes.propTypes = {
-  location: PropTypes.shape().isRequired,
+  location: PropTypes.shape().isRequired
 };
 
 export default Quotes;

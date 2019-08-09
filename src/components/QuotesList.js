@@ -13,7 +13,7 @@ const QuotesList = ({ quotes }) => (
 );
 
 QuotesList.propTypes = {
-  quotes: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  quotes: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 export default QuotesList;

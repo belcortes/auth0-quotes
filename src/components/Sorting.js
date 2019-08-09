@@ -11,7 +11,7 @@ const Sorting = ({ onFilterSelect }) => (
 );
 
 Sorting.propTypes = {
-  onFilterSelect: PropTypes.func.isRequired,
+  onFilterSelect: PropTypes.func.isRequired
 };
 
 export default Sorting;

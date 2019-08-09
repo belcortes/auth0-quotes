@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 class Search extends Component {
   state = {
-    search: '',
+    search: ''
   }
 
   handleInputChange = e => {
@@ -18,7 +18,7 @@ class Search extends Component {
 
     history.push({
       pathname: '/',
-      search: `search=${search}`,
+      search: `search=${search}`
     });
   }
 
@@ -34,7 +34,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  history: PropTypes.shape().isRequired,
+  history: PropTypes.shape().isRequired
 };
 
 export default withRouter(Search);

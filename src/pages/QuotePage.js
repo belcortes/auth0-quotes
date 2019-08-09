@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+
+import { fetchSingleQuote } from '../api-helpers';
 
 class QuotePage extends Component {
   state = {
-    quote: {},
+    quote: {}
   }
 
   componentDidMount() {
     const { quoteId } = this.props.match.params;
-
-    axios.get(`https://auth0-exercise-quotes-api.herokuapp.com/api/quotes/${quoteId}`)
-      .then(res => {
-        this.setState({ quote: res.data });
-      });
+    const quote = fetchSingleQuote(quoteId)
+    console.log(quote)
+    fetchSingleQuote(quoteId).then(quote => this.setState({ quote }));
   }
 
   render() {
@@ -29,7 +28,7 @@ class QuotePage extends Component {
 }
 
 QuotePage.propTypes = {
-  match: PropTypes.shape().isRequired,
+  match: PropTypes.shape().isRequired
 };
 
 export default QuotePage;
