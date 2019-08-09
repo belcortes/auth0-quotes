@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 const QuotesListItem = ({ quote, history }) => (
-  <div onClick={() => history.push(`/quotes/${quote.id}`)} onKeyDown={history.push(`/quotes/${quote.id}`)}>
+  <div onClick={() => history.push(`/quotes/${quote.id}`)}>
     {quote.id}
     {quote.text}
     {quote.author}

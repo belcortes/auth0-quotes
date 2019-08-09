@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import QuotesList from '../components/QuotesList';
+import Sorting from '../components/Sorting';
 
 class Quotes extends Component {
   state = {
@@ -31,6 +32,7 @@ class Quotes extends Component {
     const { quotes } = this.state;
     return (
       <div>
+        <Sorting />
         <QuotesList quotes={quotes} />
       </div>
     );
