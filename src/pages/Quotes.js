@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import {
   fetchQuotes,
   fetchSearchedQuotes,
-  fetchSortedQuotes,
-  fetchPages
+  fetchSortedQuotes
 } from '../api-helpers';
 
 import QuotesList from '../components/QuotesList';
@@ -13,18 +12,11 @@ import Sorting from '../components/Sorting';
 
 class Quotes extends Component {
   state = {
-    quotes: [],
-    currentPage: 1,
-    totalPage: null,
-    filter: null
+    quotes: []
   }
 
   componentDidMount() {
-    fetchQuotes().then(data => this.setState({
-      quotes: data.results,
-      currentPage: data.pagination.page,
-      totalPage: data.pagination.pageCount
-    }));
+    fetchQuotes().then(quotes => this.setState({ quotes }));
   }
 
   componentDidUpdate(prevProps) {
@@ -32,33 +24,19 @@ class Quotes extends Component {
     const prevSearch = prevProps.location.search;
 
     if (search && search !== prevSearch) {
-      fetchSearchedQuotes(search.split('=')[1], searchBy.split('=')[1]).then(data => this.setState({
-        quotes: data.results,
-        currentPage: data.pagination.page,
-        totalPage: data.pagination.pageCount
-       }));
+      fetchSearchedQuotes(search.split('=')[1], searchBy.split('=')[1]).then(quotes => this.setState({ quotes }));
     }
   }
-  onFilterSelect = value => {
-    fetchSortedQuotes(value).then(data => this.setState({
-      quotes: data.results,
-      currentPage: data.pagination.page,
-      totalPage: data.pagination.pageCount
-    }));
-    this.setState({filer: value});
+  onFilterSelect = filter => {
+    fetchSortedQuotes(filter).then(quotes => this.setState({ quotes }));
   }
 
-  // loadMore = () => {
-  //   fetchPages(this.state.currentPage+1, this.props.location.search.split('=')[1], this.state.filter).then(data => this.setState({ quotes: [...this.state.quotes, ...data] }))
-  // };
-
   render() {
-    const { quotes, currentPage, totalPage } = this.state;
+    const { quotes } = this.state;
     return (
       <div>
         <Sorting onFilterSelect={this.onFilterSelect} />
         <QuotesList quotes={quotes} />
-
       </div>
     );
   }
@@ -67,13 +45,5 @@ class Quotes extends Component {
 Quotes.propTypes = {
   location: PropTypes.shape().isRequired
 };
-
-// <button
-//   onClick={() => {
-//     this.loadMore();
-//   }}
-// >
-//   Load More
-// </button>
 
 export default Quotes;

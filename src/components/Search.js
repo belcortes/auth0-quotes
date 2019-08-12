@@ -24,11 +24,12 @@ class Search extends Component {
   }
 
   render() {
-    const { onSearchClose, onSearchChange, searchBy } = this.props
+    const { onSearchClose, onSearchChange, searchBy } = this.props;
     return (
       <div className="search-bar is-flex">
         <div>
-          <input type="radio"
+          <input
+            type="radio"
             value="text"
             checked={searchBy === 'text'}
             onChange={e => onSearchChange(e)} />
@@ -56,7 +57,10 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  history: PropTypes.shape().isRequired
+  history: PropTypes.shape().isRequired,
+  searchBy: PropTypes.string.isRequired,
+  onSearchClose: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired
 };
 
 export default withRouter(Search);

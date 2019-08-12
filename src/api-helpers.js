@@ -9,35 +9,15 @@ export const fetchSingleQuote = async quoteId => {
 
 export const fetchQuotes = async () => {
   const res = await axios.get(URL_BASE);
-  return res.data;
+  return res.data.results;
 };
 
 export const fetchSearchedQuotes = async (search, searchBy) => {
-  console.log(searchBy, search)
-  let res;
-  if(searchBy) {
-    res = await axios.get(`${URL_BASE}?${searchBy}=${search}`);
-  } else {
-    res = await axios.get(`${URL_BASE}?text=${search}`);
-  }
-
-  return res.data;
+  const res = await axios.get(`${URL_BASE}?${searchBy}=${search}`);
+  return res.data.results;
 };
 
 export const fetchSortedQuotes = async filter => {
   const res = await axios.get(`${URL_BASE}?sortBy=${filter}`);
-  return res.data;
+  return res.data.results;
 };
-
-// export const fetchPages = async (page, search, filter) => {
-//   let res;
-//   if (search) {
-//     res = await axios.get(`${URL_BASE}?text=${search}?page=${page}`);
-//   } else if (filter) {
-//     res = await axios.get(`${URL_BASE}?sortBy=${filter}?page=${page}`);
-//   } else {
-//     res = await axios.get(`${URL_BASE}?page=${page}`);
-//   }
-//
-//   return res.data.results;
-// };

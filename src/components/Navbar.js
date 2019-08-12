@@ -10,7 +10,9 @@ class Navbar extends Component {
   }
 
   onSearchOpen = () => this.setState({ displaySearchBar: true });
+
   onSearchClose = () => this.setState({ displaySearchBar: false });
+
   onSearchChange = e => this.setState({ searchBy: e.target.value });
 
   render() {
@@ -24,9 +26,9 @@ class Navbar extends Component {
         {
           displaySearchBar
             ? <Search
+                searchBy={searchBy}
                 onSearchChange={this.onSearchChange}
                 onSearchClose={this.onSearchClose}
-                searchBy={searchBy}
               />
             : <img
                 alt="search"
