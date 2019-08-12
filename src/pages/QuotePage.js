@@ -10,8 +10,6 @@ class QuotePage extends Component {
 
   componentDidMount() {
     const { quoteId } = this.props.match.params;
-    const quote = fetchSingleQuote(quoteId)
-    console.log(quote)
     fetchSingleQuote(quoteId).then(quote => this.setState({ quote }));
   }
 

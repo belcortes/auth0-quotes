@@ -13,20 +13,42 @@ class Search extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { history } = this.props;
+    const { history, searchBy } = this.props;
     const { search } = this.state;
 
     history.push({
       pathname: '/',
-      search: `search=${search}`
+      search: `search=${search}`,
+      searchBy: `searchBy=${searchBy}`
     });
   }
 
   render() {
+    const { onSearchClose, onSearchChange, searchBy } = this.props
     return (
-      <div>
+      <div className="search-bar is-flex">
+        <div>
+          <input type="radio"
+            value="text"
+            checked={searchBy === 'text'}
+            onChange={e => onSearchChange(e)} />
+          text
+        </div>
+        <div>
+          <input type="radio"
+             value="authorName"
+             checked={searchBy === 'authorName'}
+             onChange={e => onSearchChange(e)}/>
+           author
+        </div>
         <form onSubmit={this.onSubmit}>
-          <input type="text" placeholder="Search" onChange={this.handleInputChange} />
+          <img
+            alt="search"
+            src="/assets/magnifying_glass.svg"
+            className="navbar-glass"
+          />
+          <input type="search" placeholder="Search" onChange={this.handleInputChange} />
+          <div onClick={onSearchClose}>x</div>
         </form>
       </div>
     );
