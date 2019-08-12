@@ -23,6 +23,11 @@ module.exports = {
     "rules": {
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "arrow-parens": ["error", "as-needed"],
-      "comma-dangle": ["error", "never"]
+      "comma-dangle": ["error", "never"],
+      "jsx-a11y/label-has-for": [ 2, {
+        "required": {
+            "some": [ "nesting", "id" ]
+        }
+      }]
     }
 };

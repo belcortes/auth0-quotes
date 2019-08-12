@@ -9,9 +9,9 @@ import Sorting from '../components/Sorting';
 class Quotes extends Component {
   state = {
     quotes: [],
-    filter: 'text',
     search: 'a',
-    searchBy: 'text'
+    searchBy: 'text',
+    filter: 'text'
   }
 
   componentDidMount() {
