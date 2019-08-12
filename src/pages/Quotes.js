@@ -1,34 +1,43 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  fetchQuotes,
-  fetchSearchedQuotes,
-  fetchSortedQuotes
-} from '../api-helpers';
+import { fetchQuotes } from '../api-helpers';
 
 import QuotesList from '../components/QuotesList';
 import Sorting from '../components/Sorting';
 
 class Quotes extends Component {
   state = {
-    quotes: []
+    quotes: [],
+    filter: 'text',
+    search: 'a',
+    searchBy: 'text'
   }
 
   componentDidMount() {
-    fetchQuotes().then(quotes => this.setState({ quotes }));
+    const { search, searchBy, filter } = this.state;
+    fetchQuotes(searchBy, search, filter).then(quotes => this.setState({ quotes }));
   }
 
   componentDidUpdate(prevProps) {
     const { search, searchBy } = this.props.location;
+    const { filter } = this.state;
     const prevSearch = prevProps.location.search;
 
     if (search && search !== prevSearch) {
-      fetchSearchedQuotes(search.split('=')[1], searchBy.split('=')[1]).then(quotes => this.setState({ quotes }));
+      const newSearch = search.split('=')[1];
+      const newSearchBy = searchBy.split('=')[1];
+
+      fetchQuotes(newSearchBy, newSearch, filter)
+        .then(quotes => this.setState({ quotes, search: newSearch, searchBy: newSearchBy }));
     }
   }
+
   onFilterSelect = filter => {
-    fetchSortedQuotes(filter).then(quotes => this.setState({ quotes }));
+    const { search, searchBy } = this.state;
+
+    this.setState({ filter });
+    fetchQuotes(searchBy, search, filter).then(quotes => this.setState({ quotes }));
   }
 
   render() {
