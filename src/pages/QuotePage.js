@@ -16,10 +16,10 @@ class QuotePage extends Component {
   render() {
     const { quote } = this.state;
     return (
-      <div>
-        {quote.id}
-        {quote.text}
-        {quote.author}
+      <div className='container quotes-list-item'>
+        <span className='quotes-list-item_id'>QUOTE #{quote.id}</span>
+        <span className='quotes-list-item_text'>"{quote.text}"</span>
+        <span className='quotes-list-item_author'>{quote.authorName}</span>
       </div>
     );
   }

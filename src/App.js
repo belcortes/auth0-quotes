@@ -12,9 +12,11 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        <Route exact path="/" component={Quotes} />
-        <Route exact path="/quotes/:quoteId" component={QuotePage} />
-        <Route exact path="/profile" component={Profile} />
+        <div className="content">
+          <Route exact path="/" component={Quotes} />
+          <Route exact path="/quotes/:quoteId" component={QuotePage} />
+          <Route exact path="/profile" component={Profile} />
+        </div>
       </Router>
     </div>
   );

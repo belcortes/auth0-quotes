@@ -1,0 +1,46 @@
+// Quotes List
+.quotes_list {
+  display: inline-block;
+}
+
+
+// Quotes List Item
+.quotes-list-item {
+  display: block;
+  background-color: white;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 2px;
+  -webkit-box-shadow:1px 1px 5px 1px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: 1px 1px 5px 1px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow: 1px 1px 5px 1px #ccc;
+}
+
+.quotes-list-item_id {
+  font-size: 10px;
+  color: $font-gray;
+  font-weight: 500;
+  display: block;
+}
+
+.quotes-list-item_text {
+  color: $orange;
+  display: block;
+  font-weight: 600;
+  padding: 20px 0;
+}
+
+.quotes-list-item_author {
+  color: $font-gray;
+  font-size: 12px;
+  display: block;
+  font-weight: bold;
+}
+
+
+// Sorting
+.quotes_sort {
+  float: right;
+  display: inline-block;
+  margin-top: 20px;
+}

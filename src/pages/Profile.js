@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Profile = () => (
-  <form>
+  <form className="container">
     <label className="label">
       Nickname
       <input className="input" type="text" />

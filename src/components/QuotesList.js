@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import QuotesListItem from './QuotesListItem';
 
 const QuotesList = ({ quotes }) => (
-  <div>
+  <div className="quotes_list">
     {quotes.map(quote => <QuotesListItem key={quote.id} quote={quote} />)}
   </div>
 );

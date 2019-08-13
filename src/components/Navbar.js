@@ -17,30 +17,32 @@ class Navbar extends Component {
 
   render() {
     const { displaySearchBar, searchBy } = this.state;
-    
+
     return (
-      <nav className="is-flex navbar">
-        <Link to="/" className="is-flex navbar-logo">
-          <img alt="auth0-logo" src="/assets/auth0_black.svg" />
-          | Quotes
-        </Link>
-        <Link to="/profile" className="is-flex navbar-logo">
-          <img src="/assets/user_icon.svg" alt="user-icon" />
-        </Link>
-        {
-          displaySearchBar
-            ? <Search
-                searchBy={searchBy}
-                onSearchChange={this.onSearchChange}
-                onSearchClose={this.onSearchClose}
-              />
-            : <img
-                alt="search"
-                src="/assets/magnifying_glass.svg"
-                className="navbar-glass"
-                onClick={() => this.onSearchOpen()}
-              />
-        }
+      <nav className="navbar">
+        <div className="is-flex navbar_content">
+          <Link to="/" className="is-flex navbar-logo">
+            <img alt="auth0-logo" src="/assets/auth0_black.svg" />
+            | Quotes
+          </Link>
+          <Link to="/profile">
+            <img src="/assets/user_icon.svg" alt="user-icon" />
+          </Link>
+          {
+            displaySearchBar
+              ? <Search
+                  searchBy={searchBy}
+                  onSearchChange={this.onSearchChange}
+                  onSearchClose={this.onSearchClose}
+                />
+              : <img
+                  alt="search"
+                  src="/assets/magnifying_glass.svg"
+                  className="navbar-glass"
+                  onClick={() => this.onSearchOpen()}
+                />
+          }
+        </div>
       </nav>
     );
   }

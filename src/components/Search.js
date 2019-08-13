@@ -32,15 +32,18 @@ class Search extends Component {
             type="radio"
             value="text"
             checked={searchBy === 'text'}
-            onChange={e => onSearchChange(e)} />
-          text
+            onChange={e => onSearchChange(e)}
+          />
+          Text
         </div>
         <div>
-          <input type="radio"
-             value="authorName"
-             checked={searchBy === 'authorName'}
-             onChange={e => onSearchChange(e)}/>
-           author
+          <input
+            type="radio"
+            value="authorName"
+            checked={searchBy === 'authorName'}
+            onChange={e => onSearchChange(e)}
+          />
+          Author
         </div>
         <form onSubmit={this.onSubmit}>
           <img
@@ -49,7 +52,7 @@ class Search extends Component {
             className="navbar-glass"
           />
           <input type="search" placeholder="Search" onChange={this.handleInputChange} />
-          <div onClick={onSearchClose}>x</div>
+          <div onClick={onSearchClose} onKeyUp={onSearchClose}>x</div>
         </form>
       </div>
     );

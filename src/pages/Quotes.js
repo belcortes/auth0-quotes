@@ -11,12 +11,19 @@ class Quotes extends Component {
     quotes: [],
     search: 'a',
     searchBy: 'text',
-    filter: 'text'
+    filter: 'text',
+    page: 1
   }
 
   componentDidMount() {
-    const { search, searchBy, filter } = this.state;
-    fetchQuotes(searchBy, search, filter).then(quotes => this.setState({ quotes }));
+    const {
+      search,
+      searchBy,
+      filter,
+      page
+    } = this.state;
+
+    fetchQuotes(searchBy, search, filter, page).then(quotes => this.setState({ quotes }));
   }
 
   componentDidUpdate(prevProps) {
@@ -28,24 +35,35 @@ class Quotes extends Component {
       const newSearch = search.split('=')[1];
       const newSearchBy = searchBy.split('=')[1];
 
-      fetchQuotes(newSearchBy, newSearch, filter)
+      fetchQuotes(newSearchBy, newSearch, filter, 1)
         .then(quotes => this.setState({ quotes, search: newSearch, searchBy: newSearchBy }));
     }
   }
 
   onFilterSelect = filter => {
-    const { search, searchBy } = this.state;
+    const { search, searchBy, page } = this.state;
 
     this.setState({ filter });
-    fetchQuotes(searchBy, search, filter).then(quotes => this.setState({ quotes }));
+    fetchQuotes(searchBy, search, filter, page).then(quotes => this.setState({ quotes }));
+  }
+
+  loadMore = () => {
+    const { search, searchBy, filter, page } = this.state;
+    fetchQuotes(searchBy, search, filter, page + 1)
+      .then(quotes => this.setState(prevState => ({
+        page: page + 1,
+        quotes: [...prevState.quotes, ...quotes]
+      })));
   }
 
   render() {
     const { quotes } = this.state;
     return (
-      <div>
+      <div className="container">
         <Sorting onFilterSelect={this.onFilterSelect} />
         <QuotesList quotes={quotes} />
+        <button type="button" onClick={() => this.loadMore()}>load more</button>
+        <img src="/assets/auth0_shield.svg" alt="auth0-shield" />
       </div>
     );
   }
