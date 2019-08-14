@@ -9,7 +9,7 @@ import Sorting from '../components/Sorting';
 class Quotes extends Component {
   state = {
     quotes: [],
-    search: 'a',
+    search: null,
     searchBy: 'text',
     filter: 'text',
     page: 1
@@ -41,10 +41,10 @@ class Quotes extends Component {
   }
 
   onFilterSelect = filter => {
-    const { search, searchBy, page } = this.state;
+    const { search, searchBy } = this.state;
 
     this.setState({ filter });
-    fetchQuotes(searchBy, search, filter, page).then(quotes => this.setState({ quotes }));
+    fetchQuotes(searchBy, search, filter, 1).then(quotes => this.setState({ quotes }));
   }
 
   loadMore = () => {

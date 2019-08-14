@@ -8,6 +8,7 @@ export const fetchSingleQuote = async quoteId => {
 };
 
 export const fetchQuotes = async (searchBy, search, filter, page) => {
-  const res = await axios.get(`${URL_BASE}?sortBy=${filter}&${searchBy}=${search}&page=${page}`);
+  const searchQuery = search ? `&${searchBy}=${search}` : ''
+  const res = await axios.get(`${URL_BASE}?sortBy=${filter}${searchQuery}&page=${page}`);
   return res.data.results;
 };

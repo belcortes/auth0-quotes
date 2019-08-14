@@ -1,7 +1,12 @@
 @import './variables';
 @import './navbar';
 @import './quotes';
+@import './profile';
 
-.container {
-  width: 35%;
+.content {
+  margin: 0 auto;
+}
+
+.column {
+  padding: 0;
 }

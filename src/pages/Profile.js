@@ -1,31 +1,20 @@
 import React from 'react';
 
 const Profile = () => (
-  <form className="container">
-    <label className="label">
-      Nickname
-      <input className="input" type="text" />
-    </label>
-    <label className="label">
-      Name
-      <input className="input" type="text" />
-    </label>
-    <label className="label">
-      Email
-      <input className="input" type="email" />
-    </label>
-    <label className="label">
-      Bio
-      <textarea className="textarea" type="text" />
-    </label>
-    <label className="label">
-      Birthdate
-      <input type="date" name="birthday" />
-    </label>
-    <label className="label">
-      Favorite Color
-      <input type="color" />
-    </label>
+  <form className="container profile">
+    <label className="label">Nickname</label>
+    <input className="input" type="text" />
+    <label className="label">Name</label>
+    <input className="input" type="text" />
+    <label className="label">Email</label>
+    <input className="input" type="email" />
+    <label className="label">Bio</label>
+    <textarea className="textarea" type="text" />
+    <label className="label">Birthdate</label>
+    <input className="profile_input" type="date" name="birthday" />
+    <label className="label">Favorite Color</label>
+    <input className="profile_input" type="color" />
+    <button>SAVE</button>
   </form>
 );
 

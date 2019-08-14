@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import Search from './Search';
 
@@ -15,32 +15,42 @@ class Navbar extends Component {
 
   onSearchChange = e => this.setState({ searchBy: e.target.value });
 
-  render() {
+  searchBarToggle = () => {
     const { displaySearchBar, searchBy } = this.state;
+    return displaySearchBar
+        ? <Search
+            searchBy={searchBy}
+            onSearchChange={this.onSearchChange}
+            onSearchClose={this.onSearchClose}
+          />
+        : <div className="navbar_search is-flex">
+            <Link to="/profile" className="navbar_search-user is-flex">
+              <img src="/assets/user_icon.svg" alt="user-icon"/>
+            </Link>
+            <div className="navbar_search-glass is-flex">
+              <img
+                alt="search"
+                src="/assets/magnifying_glass.svg"
+                onClick={() => this.onSearchOpen()}
+              />
+            </div>
+          </div>
+  }
+
+  render() {
+    const { pathname } = this.props.location
 
     return (
       <nav className="navbar">
-        <div className="is-flex navbar_content">
-          <Link to="/" className="is-flex navbar-logo">
+        <div className="is-flex navbar_content column is-one-third">
+          <Link to="/" className="is-flex navbar_logo">
             <img alt="auth0-logo" src="/assets/auth0_black.svg" />
-            | Quotes
-          </Link>
-          <Link to="/profile">
-            <img src="/assets/user_icon.svg" alt="user-icon" />
+            Quotes
           </Link>
           {
-            displaySearchBar
-              ? <Search
-                  searchBy={searchBy}
-                  onSearchChange={this.onSearchChange}
-                  onSearchClose={this.onSearchClose}
-                />
-              : <img
-                  alt="search"
-                  src="/assets/magnifying_glass.svg"
-                  className="navbar-glass"
-                  onClick={() => this.onSearchOpen()}
-                />
+            pathname === '/profile'
+              ? <Link to="/" className="navbar_button">LOGOUT</Link>
+              : this.searchBarToggle()
           }
         </div>
       </nav>
@@ -48,4 +58,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);

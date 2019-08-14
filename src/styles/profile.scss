@@ -1,0 +1,54 @@
+.profile {
+  background: white;
+  padding: 50px;
+  margin: 0 auto;
+  margin: 30px 0;
+  -webkit-box-shadow: $box-shadow;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: $box-shadow;  /* Firefox 3.5 - 3.6 */
+  box-shadow: $box-shadow;
+
+  label {
+    float: left;
+    color: $font-gray;
+    font-size: 12px;
+  }
+
+  input, textarea {
+    box-shadow: none;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background-color: $orange;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: 8px 20px;
+  }
+
+  input[type=color]::-webkit-color-swatch {
+    border: none;
+    border-radius: 10px;
+    height: 10px;
+    padding: 0;
+    line-height: 24px;
+    margin-top: 3px
+  }
+
+}
+
+.profile_input {
+  width: 100%;
+  font-size: 1rem;
+  background-color: white;
+  border-color: #dbdbdb;
+  border-style: solid;
+  border-width: 1px;
+  color: #363636;
+  height: 2.25em;
+  padding-bottom: calc(0.375em - 1px);
+  padding-left: calc(0.625em - 1px);
+  padding-right: calc(0.625em - 1px);
+  padding-top: calc(0.375em - 1px);
+}
