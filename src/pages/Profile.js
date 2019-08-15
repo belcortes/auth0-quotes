@@ -14,7 +14,7 @@ const Profile = () => (
     <input className="profile_input" type="date" name="birthday" value="1990-09-24" />
     <label className="label">Favorite Color</label>
     <input className="profile_input" type="color" value="#49BAC4" />
-    <button>SAVE</button>
+    <button type="button">SAVE</button>
   </form>
 );
 

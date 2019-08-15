@@ -24,6 +24,13 @@ class Quotes extends Component {
     } = this.state;
 
     fetchQuotes(searchBy, search, filter, page).then(quotes => this.setState({ quotes }));
+
+    window.addEventListener('scroll', () => {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        console.log("you're at the bottom of the page");
+        this.loadMore()
+      }
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -67,8 +74,7 @@ class Quotes extends Component {
     return (
       <div className="container quotes">
         <Sorting onFilterSelect={this.onFilterSelect} />
-        <QuotesList quotes={quotes} loadMore={this.loadMore} />
-        <img src="/assets/auth0_shield.svg" alt="auth0-shield" />
+        <QuotesList quotes={quotes} />
       </div>
     );
   }

@@ -18,8 +18,8 @@ class Search extends Component {
 
     history.push({
       pathname: '/',
-      search: `search=${search}`,
-      searchBy: `searchBy=${searchBy}`
+      search: search,
+      searchBy: searchBy
     });
   }
 

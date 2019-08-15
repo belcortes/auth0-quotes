@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 
 import Search from './Search';
@@ -18,27 +19,28 @@ class Navbar extends Component {
   searchBarToggle = () => {
     const { displaySearchBar, searchBy } = this.state;
     return displaySearchBar
-        ? <Search
-            searchBy={searchBy}
-            onSearchChange={this.onSearchChange}
-            onSearchClose={this.onSearchClose}
-          />
-        : <div className="navbar_search is-flex">
-            <Link to="/profile" className="navbar_search-user is-flex">
-              <img src="/assets/user_icon.svg" alt="user-icon"/>
-            </Link>
-            <div className="navbar_search-glass is-flex">
-              <img
-                alt="search"
-                src="/assets/magnifying_glass.svg"
-                onClick={() => this.onSearchOpen()}
-              />
-            </div>
+      ? <Search
+          searchBy={searchBy}
+          onSearchChange={this.onSearchChange}
+          onSearchClose={this.onSearchClose}
+        />
+      : <div className="navbar_search is-flex">
+          <Link to="/profile" className="navbar_search-user is-flex">
+            <img src="/assets/user_icon.svg" alt="user-icon" />
+          </Link>
+          <div className="navbar_search-glass is-flex">
+            <img
+              alt="search"
+              src="/assets/magnifying_glass.svg"
+              onClick={() => this.onSearchOpen()}
+              onKeyUp={() => this.onSearchOpen()}
+            />
           </div>
+        </div>;
   }
 
   render() {
-    const { pathname } = this.props.location
+    const { pathname } = this.props.location;
 
     return (
       <nav className="navbar">
@@ -57,5 +59,9 @@ class Navbar extends Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  location: PropTypes.shape().isRequired
+};
 
 export default withRouter(Navbar);

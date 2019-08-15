@@ -29,9 +29,10 @@ module.exports = {
             "some": [ "nesting", "id" ]
         }
       }],
-      "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }]
-      // "react/destructuring-assignment": ["error", 'awl']
-      // "object-curly-newline": ["error", "never"],
+      "react/jsx-one-expression-per-line": "off",
+      "react/destructuring-assignment": "off",
+      "object-curly-newline": "off",
+      "jsx-a11y/label-has-for": "off"
       // "object-curly-newline": ["error", {
       //   "ObjectExpression": "never"
       // }]
