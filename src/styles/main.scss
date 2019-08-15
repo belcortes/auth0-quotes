@@ -2,6 +2,11 @@
 @import './navbar';
 @import './quotes';
 @import './profile';
+@import './search';
+
+html {
+  background-color: $bg-gray;
+}
 
 .content {
   margin: 0 auto;

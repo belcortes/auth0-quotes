@@ -48,7 +48,13 @@ class Quotes extends Component {
   }
 
   loadMore = () => {
-    const { search, searchBy, filter, page } = this.state;
+    const {
+      search,
+      searchBy,
+      filter,
+      page
+    } = this.state;
+
     fetchQuotes(searchBy, search, filter, page + 1)
       .then(quotes => this.setState(prevState => ({
         page: page + 1,
@@ -59,10 +65,9 @@ class Quotes extends Component {
   render() {
     const { quotes } = this.state;
     return (
-      <div className="container">
+      <div className="container quotes">
         <Sorting onFilterSelect={this.onFilterSelect} />
-        <QuotesList quotes={quotes} />
-        <button type="button" onClick={() => this.loadMore()}>load more</button>
+        <QuotesList quotes={quotes} loadMore={this.loadMore} />
         <img src="/assets/auth0_shield.svg" alt="auth0-shield" />
       </div>
     );

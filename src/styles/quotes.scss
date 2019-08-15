@@ -1,10 +1,20 @@
+//Quotes page
+.quotes {
+  overflow-y: scroll;
+}
+
 // Quotes List
 .quotes_list {
   display: inline-block;
+  height: calc(100vh - 160px);
+  overflow-y: scroll;
 }
 
 
 // Quotes List Item
+.quotes-list-item:first-child {
+  margin-top: 0;
+}
 .quotes-list-item {
   display: block;
   background-color: white;
@@ -42,5 +52,28 @@
 .quotes_sort {
   float: right;
   display: inline-block;
-  margin-top: 20px;
+  margin: 20px 0;
+
+  option {
+    background-color: $font-gray;
+    color: white;
+    padding: 5px;
+  }
+}
+
+// SINGLE QUOTE
+.single-quote_container {
+  height: calc(100vh - 52px);
+  align-items: center;
+  width: 100%;
+}
+
+.single-quote {
+  background-color: white;
+  padding: 20px;
+  border-radius: 2px;
+  -webkit-box-shadow: $box-shadow;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow: $box-shadow;  /* Firefox 3.5 - 3.6 */
+  box-shadow: $box-shadow;
+  width: 100%;
 }

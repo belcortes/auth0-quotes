@@ -27,7 +27,7 @@ class Search extends Component {
     const { onSearchClose, onSearchChange, searchBy } = this.props;
     return (
       <div className="search-bar is-flex">
-        <div>
+        <div className="search-bar_option">
           <input
             type="radio"
             value="text"
@@ -36,7 +36,7 @@ class Search extends Component {
           />
           Text
         </div>
-        <div>
+        <div className="search-bar_option">
           <input
             type="radio"
             value="authorName"
@@ -45,14 +45,20 @@ class Search extends Component {
           />
           Author
         </div>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} className="is-flex search-form">
           <img
             alt="search"
             src="/assets/magnifying_glass.svg"
-            className="navbar-glass"
+            className="form-search"
           />
-          <input type="search" placeholder="Search" onChange={this.handleInputChange} />
-          <div onClick={onSearchClose} onKeyUp={onSearchClose}>x</div>
+          <input type="search" placeholder="Search here..." onChange={this.handleInputChange} />
+          <img
+            src="/assets/close.svg"
+            alt="close"
+            onClick={onSearchClose}
+            onKeyUp={onSearchClose}
+            className="form-close"
+          />
         </form>
       </div>
     );

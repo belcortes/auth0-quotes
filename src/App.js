@@ -12,7 +12,7 @@ function App() {
     <div className="App is-centered">
       <Router>
         <Navbar />
-        <div className="content column is-one-third ">
+        <div className="content column is-one-third">
           <Route exact path="/" component={Quotes} />
           <Route exact path="/quotes/:quoteId" component={QuotePage} />
           <Route exact path="/profile" component={Profile} />

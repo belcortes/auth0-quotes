@@ -28,6 +28,12 @@ module.exports = {
         "required": {
             "some": [ "nesting", "id" ]
         }
-      }]
+      }],
+      "react/jsx-one-expression-per-line": ["error", { "allow": "single-child" }]
+      // "react/destructuring-assignment": ["error", 'awl']
+      // "object-curly-newline": ["error", "never"],
+      // "object-curly-newline": ["error", {
+      //   "ObjectExpression": "never"
+      // }]
     }
 };
