@@ -1,11 +1,10 @@
 .profile {
   background: white;
   padding: 50px;
-  margin: 0 auto;
-  margin: 30px 0;
   -webkit-box-shadow: $box-shadow;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow: $box-shadow;  /* Firefox 3.5 - 3.6 */
   box-shadow: $box-shadow;
+  margin-bottom: 50px !important;
 
   label {
     float: left;
