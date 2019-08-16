@@ -5,7 +5,7 @@ import QuotesListItem from './QuotesListItem';
 
 const QuotesList = ({ quotes }) => (
   <div className="quotes_list">
-    {quotes.map(quote => <QuotesListItem key={quote.id} quote={quote} />)}
+    {quotes.map((quote, i) => <QuotesListItem key={quote.id + i} quote={quote} />)}
   </div>
 );
 
