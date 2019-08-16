@@ -1,6 +1,8 @@
 .navbar {
   background-color: white;
   padding: 10px 0;
+  position: fixed;
+  width: 100%;
 }
 
 .navbar_content, .navbar_logo {
@@ -44,6 +46,7 @@
     border-radius: 2px;
     cursor: pointer;
     justify-content: center;
+    border: none;
 
     img {
       width: 13px;

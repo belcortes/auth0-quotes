@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const QuotesListItem = ({ quote }) => (
-  <a href={`/quotes/${quote.id}`} className='quotes-list-item'>
+  <a href={`/quotes/${quote.id}`} className="quotes-list-item">
     <span className="quotes-list-item_id">QUOTE #{quote.id}</span>
-    <span className="quotes-list-item_text">"{quote.text}"</span>
+    <span className="quotes-list-item_text">&quot;{quote.text}&quot;</span>
     <span className="quotes-list-item_author">{quote.authorName}</span>
   </a>
 );

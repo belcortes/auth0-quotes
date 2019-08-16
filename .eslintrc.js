@@ -29,10 +29,13 @@ module.exports = {
             "some": [ "nesting", "id" ]
         }
       }],
+      "react/jsx-wrap-multilines": ["error", {"condition": "ignore"}],
       "react/jsx-one-expression-per-line": "off",
       "react/destructuring-assignment": "off",
       "object-curly-newline": "off",
-      "jsx-a11y/label-has-for": "off"
+      "jsx-a11y/label-has-for": "off",
+      "jsx-a11y/label-has-associated-control": "off",
+      "react/jsx-indent": "off"
       // "object-curly-newline": ["error", {
       //   "ObjectExpression": "never"
       // }]

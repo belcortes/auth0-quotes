@@ -18,8 +18,8 @@ class Search extends Component {
 
     history.push({
       pathname: '/',
-      search: search,
-      searchBy: searchBy
+      search: `?search=${search}`,
+      searchBy: `?searchBy=${searchBy}`
     });
   }
 
@@ -27,23 +27,25 @@ class Search extends Component {
     const { onSearchClose, onSearchChange, searchBy } = this.props;
     return (
       <div className="search-bar is-flex">
-        <div className="search-bar_option">
-          <input
-            type="radio"
-            value="text"
-            checked={searchBy === 'text'}
-            onChange={e => onSearchChange(e)}
-          />
-          Text
-        </div>
-        <div className="search-bar_option">
-          <input
-            type="radio"
-            value="authorName"
-            checked={searchBy === 'authorName'}
-            onChange={e => onSearchChange(e)}
-          />
-          Author
+        <div className="is-flex">
+          <div className="search-bar_option">
+            <input
+              type="radio"
+              value="text"
+              checked={searchBy === 'text'}
+              onChange={e => onSearchChange(e)}
+            />
+            Text
+          </div>
+          <div className="search-bar_option">
+            <input
+              type="radio"
+              value="authorName"
+              checked={searchBy === 'authorName'}
+              onChange={e => onSearchChange(e)}
+            />
+            Author
+          </div>
         </div>
         <form onSubmit={this.onSubmit} className="is-flex search-form">
           <img

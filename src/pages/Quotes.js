@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import qs from 'query-string';
 
 import { fetchQuotes } from '../api-helpers';
 
@@ -23,27 +24,37 @@ class Quotes extends Component {
       page
     } = this.state;
 
-    fetchQuotes(searchBy, search, filter, page).then(quotes => this.setState({ quotes }));
+    // Parsing search query from URL
+    const newSearch = qs.parse(this.props.location.search).search;
+    if (newSearch) {
+      fetchQuotes(searchBy, newSearch, filter, page)
+        .then(quotes => this.setState({ quotes, search: newSearch }));
+    } else {
+      fetchQuotes(searchBy, search, filter, page).then(quotes => this.setState({ quotes }));
+    }
 
+    // Load more data when window scrolls to bottom
     window.addEventListener('scroll', () => {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        console.log("you're at the bottom of the page");
-        this.loadMore()
+        this.loadMore();
       }
     });
   }
 
   componentDidUpdate(prevProps) {
-    const { search, searchBy } = this.props.location;
-    const { filter } = this.state;
-    const prevSearch = prevProps.location.search;
+    const { filter, searchBy } = this.state;
+
+    // Parsing search query from URL
+    const search = qs.parse(this.props.location.search).search;
+
+    // Parsing searchBy query from URL, if null use the state searchBy
+    const newSearchBy = qs.parse(this.props.location.searchBy).searchBy || searchBy;
+
+    const prevSearch = qs.parse(prevProps.location.search, { ignoreQueryPrefix: true }).search;
 
     if (search && search !== prevSearch) {
-      const newSearch = search.split('=')[1];
-      const newSearchBy = searchBy.split('=')[1];
-
-      fetchQuotes(newSearchBy, newSearch, filter, 1)
-        .then(quotes => this.setState({ quotes, search: newSearch, searchBy: newSearchBy }));
+      fetchQuotes(newSearchBy, search, filter, 1)
+        .then(quotes => this.setState({ quotes, search, searchBy: newSearchBy }));
     }
   }
 
