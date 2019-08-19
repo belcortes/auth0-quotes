@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 
 import Search from './Search';
+import Logout from './Logout';
+import Login from './Login';
 
 class Navbar extends Component {
   state = {
@@ -16,11 +18,13 @@ class Navbar extends Component {
 
   onSearchChange = e => this.setState({ searchBy: e.target.value });
 
+  // <Link to="/profile" className="navbar_search-user is-flex">
+  //   <img src="/assets/user_icon.svg" alt="user-icon" />
+  // </Link>
+
   searchBarToggle = () => (
     <div className="navbar_search is-flex">
-      <Link to="/profile" className="navbar_search-user is-flex">
-        <img src="/assets/user_icon.svg" alt="user-icon" />
-      </Link>
+      <Login />
       <button onClick={() => this.onSearchOpen()} type="button" className="navbar_search-glass is-flex">
         <img
           alt="search"
@@ -51,7 +55,7 @@ class Navbar extends Component {
                 </Link>
                 {
                   pathname === '/profile'
-                    ? <Link to="/" className="navbar_button">LOGOUT</Link>
+                    ? <Logout />
                     : this.searchBarToggle()
                 }
               </>

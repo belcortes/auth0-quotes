@@ -1,4 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Auth0 quotes
+
+App created to display, search, and filter through quotes provided by an [API](https://gist.github.com/cristiandouce/9524a6d0640af8910ba3a89f973cfc52)
+
+[Link to app in production](https://auth0-quotes.herokuapp.com/)
+
 
 ## To start up the app
 
@@ -22,4 +27,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 
-### `yarn lint`
+
+## Technologies
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+- React (UI)
+- Bulma (css framework)
+- Axios (API calls)
+- Heroku (deployment)

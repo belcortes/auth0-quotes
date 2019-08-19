@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { useAuth0 } from "./auth/react-auth0-wrapper";
 import './App.scss';
 
 import Navbar from './components/Navbar';
@@ -8,6 +9,14 @@ import QuotePage from './pages/QuotePage';
 import Profile from './pages/Profile';
 
 function App() {
+  const { loading } = useAuth0();
+  console.log(useAuth0())
+  if (loading) {
+    return (
+      <div>Loading...</div>
+    );
+  }
+
   return (
     <div className="App is-centered">
       <Router>
