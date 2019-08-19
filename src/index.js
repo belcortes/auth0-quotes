@@ -15,11 +15,13 @@ const onRedirectCallback = appState => {
   );
 };
 
+const redirectUri = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_REDIRECT_URI : process.env.REACT_APP_DEV_REDIRECT_URI;
+
 ReactDOM.render(
   <Auth0Provider
     domain={process.env.REACT_APP_DOMAIN}
     client_id={process.env.REACT_APP_CLIENT_ID}
-    redirect_uri={process.env.REACT_APP_REDIRECT_URI}
+    redirect_uri={redirectUri}
     onRedirectCallback={onRedirectCallback}
   >
     <App />

@@ -18,10 +18,6 @@ class Navbar extends Component {
 
   onSearchChange = e => this.setState({ searchBy: e.target.value });
 
-  // <Link to="/profile" className="navbar_search-user is-flex">
-  //   <img src="/assets/user_icon.svg" alt="user-icon" />
-  // </Link>
-
   searchBarToggle = () => (
     <div className="navbar_search is-flex">
       <Login />
