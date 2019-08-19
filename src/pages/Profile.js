@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth0 } from "../auth/react-auth0-wrapper";
+import { useAuth0 } from '../react-auth0-wrapper';
 
 const Profile = () => {
   const { loading, user } = useAuth0();
@@ -10,7 +10,7 @@ const Profile = () => {
     );
   }
 
-  return(
+  return (
     <form className="content profile">
       <label className="label">Nickname</label>
       <input className="input" type="text" value="User" />
@@ -26,7 +26,7 @@ const Profile = () => {
       <input className="profile_input" type="color" value="#49BAC4" />
       <button type="button">SAVE</button>
     </form>
-  )
+  );
 };
 
 export default Profile;

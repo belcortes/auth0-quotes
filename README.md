@@ -32,6 +32,7 @@ The page will reload if you make edits.<br>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 - React (UI)
-- Bulma (css framework)
+- Bulma (CSS framework)
 - Axios (API calls)
-- Heroku (deployment)
+- Heroku (Deployment)
+- Auth0 (Authentication)

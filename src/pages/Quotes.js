@@ -12,7 +12,7 @@ class Quotes extends Component {
     quotes: [],
     search: null,
     searchBy: 'text',
-    filter: 'text',
+    sort: 'text',
     page: 1
   }
 
@@ -20,17 +20,17 @@ class Quotes extends Component {
     const {
       search,
       searchBy,
-      filter,
+      sort,
       page
     } = this.state;
 
     // Parsing search query from URL
     const newSearch = qs.parse(this.props.location.search).search;
     if (newSearch) {
-      fetchQuotes(searchBy, newSearch, filter, page)
+      fetchQuotes(searchBy, newSearch, sort, page)
         .then(quotes => this.setState({ quotes, search: newSearch }));
     } else {
-      fetchQuotes(searchBy, search, filter, page).then(quotes => this.setState({ quotes }));
+      fetchQuotes(searchBy, search, sort, page).then(quotes => this.setState({ quotes }));
     }
 
     // Load more data when window scrolls to bottom
@@ -42,7 +42,7 @@ class Quotes extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { filter, searchBy } = this.state;
+    const { sort, searchBy } = this.state;
 
     // Parsing search query from URL
     const search = qs.parse(this.props.location.search).search;
@@ -53,27 +53,27 @@ class Quotes extends Component {
     const prevSearch = qs.parse(prevProps.location.search, { ignoreQueryPrefix: true }).search;
 
     if (search && search !== prevSearch) {
-      fetchQuotes(newSearchBy, search, filter, 1)
+      fetchQuotes(newSearchBy, search, sort, 1)
         .then(quotes => this.setState({ quotes, search, searchBy: newSearchBy }));
     }
   }
 
-  onFilterSelect = filter => {
+  onSortSelect = sort => {
     const { search, searchBy } = this.state;
 
-    this.setState({ filter });
-    fetchQuotes(searchBy, search, filter, 1).then(quotes => this.setState({ quotes }));
+    this.setState({ sort });
+    fetchQuotes(searchBy, search, sort, 1).then(quotes => this.setState({ quotes }));
   }
 
   loadMore = () => {
     const {
       search,
       searchBy,
-      filter,
+      sort,
       page
     } = this.state;
 
-    fetchQuotes(searchBy, search, filter, page + 1)
+    fetchQuotes(searchBy, search, sort, page + 1)
       .then(quotes => this.setState(prevState => ({
         page: page + 1,
         quotes: [...prevState.quotes, ...quotes]
@@ -84,7 +84,7 @@ class Quotes extends Component {
     const { quotes } = this.state;
     return (
       <div className="container quotes">
-        <Sorting onFilterSelect={this.onFilterSelect} />
+        <Sorting onSortSelect={this.onSortSelect} />
         <QuotesList quotes={quotes} />
       </div>
     );
