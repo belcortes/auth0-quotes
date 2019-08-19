@@ -15,7 +15,8 @@ const onRedirectCallback = appState => {
   );
 };
 
-const redirectUri = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_REDIRECT_URI : process.env.REACT_APP_DEV_REDIRECT_URI;
+const redirectUri = 'http://localhost:3000/profile' || 'https://auth0-quotes.herokuapp.com/profile'
+// const redirectUri = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_REDIRECT_URI : process.env.REACT_APP_DEV_REDIRECT_URI;
 
 ReactDOM.render(
   <Auth0Provider
