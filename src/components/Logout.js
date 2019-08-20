@@ -4,7 +4,8 @@ import { useAuth0 } from '../react-auth0-wrapper';
 
 const Logout = () => {
   const { isAuthenticated, logout } = useAuth0();
-  const appUrl = 'http://localhost:3000' || 'https://auth0-quotes.herokuapp.com';
+  // const appUrl = 'http://localhost:3000' || 'https://auth0-quotes.herokuapp.com';
+  const appUrl = process.env.NODE_ENV === 'production' ? 'https://auth0-quotes.herokuapp.com' : 'http://localhost:3000';
   return (
     <>
     {isAuthenticated && (
